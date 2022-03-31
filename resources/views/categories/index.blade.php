@@ -1,7 +1,13 @@
 <x-templates.default>
     <div class="card">
+        <x-forms.alert />
         <div class="card-header">
-            <h2 class="card-title">Data Kategori</h2>
+            <div class="col-md-8">
+                <h2 class="card-title">Data Kategori</h2>
+            </div>
+            <div class="col-md-4">
+                <a href="{{ route('category.create') }}" class="btn btn-primary float-end">Tambah Kategori</a>
+            </div>
         </div>
         <div class="card-body">
             <div class="table-responsive">
