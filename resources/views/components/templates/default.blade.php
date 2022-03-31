@@ -88,7 +88,7 @@
                   Overview
                 </div>
                 <h2 class="page-title">
-                  Combo layout
+                  {{ $title ?? 'Dashboard' }}
                 </h2>
               </div>
               <!-- Page title actions -->

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\SubDistrict;
 use Illuminate\Http\Request;
-use DataTables;
+use Yajra\DataTables\DataTables;
 
 class SubDistrictController extends Controller
 {

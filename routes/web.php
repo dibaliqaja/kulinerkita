@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubDistrictController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,14 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect('/home');
-});
+Route::get('/', fn () => redirect('home'));
 
 Route::middleware('auth')->group(function () {
-    Route::get('home', function () {
-        return view('welcome');
-    });
+    Route::get('home', fn () => view('welcome'))->name('home');
 
     Route::get('sub-district', SubDistrictController::class)->name('subdistrict.index');
+    Route::resource('category', CategoryController::class);
 });

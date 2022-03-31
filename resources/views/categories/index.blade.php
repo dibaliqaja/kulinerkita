@@ -1,7 +1,7 @@
 <x-templates.default>
     <div class="card">
         <div class="card-header">
-            <h2 class="card-title">Data Kecamatan</h2>
+            <h2 class="card-title">Data Kategori</h2>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -31,7 +31,7 @@
                 $('#table-subdistrict').DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: "{{ route('subdistrict.index') }}",
+                    ajax: "{{ route('category.index') }}",
                     columns: [
                         { data: 'id', name: 'id' },
                         { data: 'name', name: 'name' },
@@ -42,6 +42,7 @@
         </script>
     @endpush
 
-    <x-slot name="title">Kecamatan</x-slot>
+    <x-slot name="title">Kategori</x-slot>
 
 </x-templates.default>
+
