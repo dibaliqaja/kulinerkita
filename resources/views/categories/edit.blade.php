@@ -3,15 +3,16 @@
 
     <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Tambah Data Kategori</h3>
+          <h3 class="card-title">Edit Data Kategori</h3>
         </div>
         <div class="card-body">
-          <form action="{{ route('categories.store') }}" method="post">
+          <form action="{{ route('categories.update', $category) }}" method="post">
             @csrf
+            @method('PUT')
             <div class="form-group mb-3">
               <label class="form-label">Nama</label>
               <div >
-                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" aria-describedby="emailHelp" placeholder="Masukkan nama kategori">
+                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" aria-describedby="emailHelp" placeholder="Masukkan nama kategori" value="{{ old('name', $category->name) }}">
                 {{-- <small class="form-hint">We'll never share your email with anyone else.</small> --}}
                 @error('name')
                     <small class="invalid-feedback"><strong>{{ $message }}</strong></small>

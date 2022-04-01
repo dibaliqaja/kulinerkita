@@ -19,7 +19,9 @@ class CategoryController extends Controller
         if ($request->ajax()) {
             $categories = Category::query();
 
-            return DataTables::of($categories)->toJson();
+            return DataTables::of($categories)
+                    ->addColumn('action', 'categories.dt-action')
+                    ->toJson();
         }
 
         return view('categories.index');
@@ -50,7 +52,7 @@ class CategoryController extends Controller
             'slug' => Str::slug($request->name)
         ]);
 
-        return redirect()->route('category.index')
+        return redirect()->route('categories.index')
                          ->withSuccess('Berhasil menambahkan kategori');
     }
 
@@ -68,34 +70,47 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        //
+        return view('categories.edit', [ 'category' => $category ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Category $category)
     {
-        //
+        $this->validate($request, [ 'name' => 'required|unique:categories,name,except,id' ]);
+
+        $category->update([
+            'name' => $request->name,
+            'slug' => Str::slug($request->name)
+        ]);
+
+        return redirect()->route('categories.index')
+                         ->withInfo('Berhasil mengedit kategori');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        //
+        if ($category->delete()) {
+            session()->flash('danger', 'Berhasil menghapus kategori');
+            return response()->json([ 'success' => true ]);
+        }
+
+        return response()->json([ 'success' => false ]);
     }
 }
