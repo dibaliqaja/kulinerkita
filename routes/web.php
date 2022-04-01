@@ -21,5 +21,5 @@ Route::middleware('auth')->group(function () {
     Route::get('home', fn () => view('welcome'))->name('home');
 
     Route::get('sub-district', SubDistrictController::class)->name('subdistrict.index');
-    Route::resource('category', CategoryController::class);
+    Route::resource('categories', CategoryController::class);
 });
