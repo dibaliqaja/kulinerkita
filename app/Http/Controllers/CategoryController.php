@@ -107,7 +107,7 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if ($category->delete()) {
-            session()->flash('danger', 'Berhasil menghapus kategori');
+            session()->flash('error', 'Berhasil menghapus kategori');
             return response()->json([ 'success' => true ]);
         }
 
