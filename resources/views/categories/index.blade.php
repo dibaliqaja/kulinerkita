@@ -14,7 +14,7 @@
                 <table class="table card-table table-vcenter text-nowrap" id="table-category">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>No</th>
                             <th>Nama</th>
                             <th>Slug</th>
                             <th>Aksi</th>
@@ -66,7 +66,7 @@
                     serverSide: true,
                     ajax: "{{ route('categories.index') }}",
                     columns: [
-                        { data: 'id', name: 'id' },
+                        { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false },
                         { data: 'name', name: 'name' },
                         { data: 'slug', name: 'slug' },
                         { data: 'action', name: 'action' },

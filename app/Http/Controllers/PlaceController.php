@@ -21,6 +21,7 @@ class PlaceController extends Controller
             $places = Place::with('subDistrict');
 
             return DataTables::of($places)
+                    ->addIndexColumn()
                     ->addColumn('subDistrictName', function (Place $place) {
                         return $place->subDistrict->name;
                     })

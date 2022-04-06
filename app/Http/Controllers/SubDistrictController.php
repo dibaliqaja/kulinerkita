@@ -19,7 +19,7 @@ class SubDistrictController extends Controller
         if ($request->ajax()) {
             $subDistricts = SubDistrict::query();
 
-            return DataTables::of($subDistricts)->toJson();
+            return DataTables::of($subDistricts)->addIndexColumn()->toJson();
         }
         return view('sub-district.index');
     }

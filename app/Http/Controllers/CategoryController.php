@@ -20,6 +20,7 @@ class CategoryController extends Controller
             $categories = Category::query();
 
             return DataTables::of($categories)
+                    ->addIndexColumn()
                     ->addColumn('action', 'categories.dt-action')
                     ->toJson();
         }
@@ -54,17 +55,6 @@ class CategoryController extends Controller
 
         return redirect()->route('categories.index')
                          ->withSuccess('Berhasil menambahkan kategori');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
     }
 
     /**

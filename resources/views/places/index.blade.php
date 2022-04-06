@@ -16,7 +16,7 @@
                 <table class="table card-table table-vcenter text-nowrap" id="table-place">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>No</th>
                             <th>Nama</th>
                             <th>Kecamatan</th>
                             <th>Deskripsi</th>
@@ -71,7 +71,7 @@
                     serverSide: true,
                     ajax: "{{ route('places.index') }}",
                     columns: [
-                        { data: 'id', name: 'id' },
+                        { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false },
                         { data: 'name', name: 'name' },
                         { data: 'subDistrictName', name: 'subDistrictName' },
                         { data: 'description', name: 'description' },
