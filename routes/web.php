@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\PlaceMenuController;
 use App\Http\Controllers\SubDistrictController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,4 +25,5 @@ Route::middleware('auth')->group(function () {
     Route::get('sub-district', SubDistrictController::class)->name('subdistrict.index');
     Route::resource('categories', CategoryController::class);
     Route::resource('places', PlaceController::class);
+    Route::resource('places/{place}/menu', PlaceMenuController::class);
 });

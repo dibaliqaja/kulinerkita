@@ -1,14 +1,14 @@
 <x-templates.default>
-    <x-slot name="title">Tempat Kuliner</x-slot>
+    <x-slot name="title">Menu Kuliner {{ $place->name }}</x-slot>
 
     <div class="card">
         <x-forms.alert />
         <div class="card-header">
             <div class="col-md-8">
-                <h2 class="card-title">Data Tempat Kuliner</h2>
+                <h2 class="card-title">Data Menu Kuliner {{ $place->name }}</h2>
             </div>
             <div class="col-md-4">
-                <a href="{{ route('places.create') }}" class="btn btn-primary float-end">Tambah Tempat</a>
+                <a href="{{ route('menu.create', $place) }}" class="btn btn-primary float-end">Tambah Menu</a>
             </div>
         </div>
         <div class="card-body">
@@ -18,10 +18,9 @@
                         <tr>
                             <th>No</th>
                             <th>Nama</th>
-                            <th>Kecamatan</th>
+                            <th>Gambar</th>
                             <th>Deskripsi</th>
-                            <th>Alamat</th>
-                            <th>Telepon</th>
+                            <th>Harga</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
@@ -69,14 +68,13 @@
                 $('#table-place').DataTable({
                     processing: true,
                     serverSide: true,
-                    ajax: "{{ route('places.index') }}",
+                    ajax: "{{ route('menu.index', request()->segment(2)) }}",
                     columns: [
-                        { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false },
-                        { data: 'place-menu', name: 'place-menu' },
-                        { data: 'subDistrictName', name: 'subDistrictName' },
+                        { data: 'id', name: 'id' },
+                        { data: 'name', name: 'name' },
+                        { data: 'image', name: 'image' },
                         { data: 'description', name: 'description' },
-                        { data: 'address', name: 'address' },
-                        { data: 'phone', name: 'phone' },
+                        { data: 'price', name: 'price' },
                         { data: 'action', name: 'action' },
                     ],
                 });
@@ -94,7 +92,7 @@
                     const id = $(this).data('id');
                     $.ajax({
                         type: 'DELETE',
-                        url: 'places/' + id,
+                        url: 'places/' + id + '/menu',
                         data: { '_token': "{{ csrf_token() }}" },
                         success: function (response) {
                             if(response.success) {
