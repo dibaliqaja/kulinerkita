@@ -86,7 +86,7 @@
                     const id = $(this).data('id');
                     $.ajax({
                         type: 'DELETE',
-                        url: 'categories/' + id,
+                        url: '/categories/' + id,
                         data: { '_token': "{{ csrf_token() }}" },
                         success: function (response) {
                             if(response.success) {

@@ -94,7 +94,7 @@
                     const id = $(this).data('id');
                     $.ajax({
                         type: 'DELETE',
-                        url: 'places/' + id,
+                        url: '/places/' + id,
                         data: { '_token': "{{ csrf_token() }}" },
                         success: function (response) {
                             if(response.success) {

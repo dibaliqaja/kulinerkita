@@ -119,7 +119,7 @@ class PlaceMenuController extends Controller
     public function update(Request $request, Place $place, Menu $menu)
     {
         $this->validate($request, [
-            'name'            => 'required|unique:menus,name,except,id',
+            'name'            => 'required',
             'description'     => 'required',
             'category_id'     => 'required',
             'price'           => 'required|numeric',
@@ -152,8 +152,14 @@ class PlaceMenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Place $place, Menu $menu)
     {
-        //
+        if (Storage::exists($menu->image)) Storage::delete($menu->image);
+        if ($menu->delete()) {
+            session()->flash('error', 'Berhasil menghapus menu');
+            return response()->json([ 'success' => true ]);
+        }
+
+        return response()->json([ 'success' => false ]);
     }
 }
