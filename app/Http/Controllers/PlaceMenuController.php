@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Menu;
 use App\Models\Place;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Yajra\DataTables\DataTables;
 
@@ -98,9 +100,13 @@ class PlaceMenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Place $place, Menu $menu)
     {
-        //
+        return view('places.menus.edit', [
+            'categories' => Category::get(),
+            'place'      => $place,
+            'menu'       => $menu
+        ]);
     }
 
     /**
@@ -110,9 +116,34 @@ class PlaceMenuController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Place $place, Menu $menu)
     {
-        //
+        $this->validate($request, [
+            'name'            => 'required|unique:menus,name,except,id',
+            'description'     => 'required',
+            'category_id'     => 'required',
+            'price'           => 'required|numeric',
+            'image'           => 'image',
+        ]);
+
+        $image = $menu->image;
+
+        if ($request->has('image')) {
+            if(Storage::exists($image)) Storage::delete($image);
+            $image = $request->file('image')->store('images/menus');
+        }
+
+        $menu->update([
+            'name'            => $request->name,
+            'slug'            => Str::slug($request->name),
+            'description'     => $request->description,
+            'category_id'     => $request->category_id,
+            'price'           => $request->price,
+            'image'           => $image,
+        ]);
+
+        return redirect()->route('menu.index', $place)
+                         ->withInfo('Berhasil mengedit menu');
     }
 
     /**

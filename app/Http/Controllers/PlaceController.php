@@ -132,7 +132,7 @@ class PlaceController extends Controller
         $image = $place->image;
 
         if ($request->has('image')) {
-            if(Storage::exists($place->image)) Storage::delete($place->image);
+            if(Storage::exists($image)) Storage::delete($image);
             $image = $request->file('image')->store('images');
         }
 
