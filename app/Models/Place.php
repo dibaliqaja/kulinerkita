@@ -11,6 +11,13 @@ class Place extends Model
 
     protected $guarded = [];
 
+    public function getImageUrlAttribute()
+    {
+        if ($this->image) return asset($this->image);
+
+        return 'https://via.placeholder.com/120';
+    }
+
     public function subDistrict()
     {
         return $this->belongsTo(SubDistrict::class);

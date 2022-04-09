@@ -25,5 +25,5 @@ Route::middleware('auth')->group(function () {
     Route::get('sub-district', SubDistrictController::class)->name('subdistrict.index');
     Route::resource('categories', CategoryController::class);
     Route::resource('places', PlaceController::class);
-    Route::resource('places/{place}/menu', PlaceMenuController::class);
+    Route::resource('places/{place}/menu', PlaceMenuController::class)->scoped();
 });
