@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Menu\ListMenuController;
 use App\Http\Controllers\Api\Menu\ShowMenuController;
 use App\Http\Controllers\Api\Place\ListPlaceController;
@@ -24,6 +25,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('register', RegisterController::class);
 
 Route::get('places', ListPlaceController::class);
 Route::get('places/{place}', ShowPlaceController::class);
