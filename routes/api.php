@@ -9,6 +9,8 @@ use App\Http\Controllers\Api\Place\ShowPlaceController;
 use App\Http\Controllers\Api\SubDistrict\ListPlaceBySubDistrictController;
 use App\Http\Controllers\Api\SubDistrict\ListSubDistrictController;
 use App\Http\Controllers\Api\SubDistrict\ShowSubDistrictController;
+use App\Http\Controllers\Api\User\ListFavoritePlaceController;
+use App\Http\Controllers\Api\User\StoreFavoritePlaceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -23,8 +25,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/user', fn (Request $request) => $request->user());
+
+    Route::post('user/places/{place}/favorite', StoreFavoritePlaceController::class);
+    Route::get('user/places', ListFavoritePlaceController::class);
 });
 
 Route::post('register', RegisterController::class);

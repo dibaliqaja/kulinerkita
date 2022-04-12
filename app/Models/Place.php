@@ -27,4 +27,9 @@ class Place extends Model
     {
         return $this->hasMany(Menu::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class);
+    }
 }
