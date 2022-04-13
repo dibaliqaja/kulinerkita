@@ -18,6 +18,16 @@ class Place extends Model
         return 'https://via.placeholder.com/120';
     }
 
+    public function scopeSearchPlace($query, $search)
+    {
+        return $query->where('name', 'like', '%'.$search.'%')
+            ->orWhere('description', 'like', '%'.$search.'%')
+            ->orWhere('address', 'like', '%'.$search.'%')
+            ->orWhereHas('subDistrict', function ($query) use ($search) {
+                $query->where('name', 'like', '%'.$search.'%');
+            });
+    }
+
     public function subDistrict()
     {
         return $this->belongsTo(SubDistrict::class);
