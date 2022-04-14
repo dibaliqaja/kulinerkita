@@ -1,15 +1,20 @@
 <x-templates.default>
     <x-slot name="title">Tempat Kuliner</x-slot>
 
+    <x-slot name="button_create">
+        <a href="{{ route('places.create') }}" class="btn btn-primary d-none d-sm-inline-block">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+            Tambah Tempat
+        </a>
+        <a href="{{ route('places.create') }}" class="btn btn-primary d-sm-none btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+        </a>
+    </x-slot>
+
     <div class="card">
         <x-forms.alert />
         <div class="card-header">
-            <div class="col-md-8">
-                <h2 class="card-title">Data Tempat Kuliner</h2>
-            </div>
-            <div class="col-md-4">
-                <a href="{{ route('places.create') }}" class="btn btn-primary float-end">Tambah Tempat</a>
-            </div>
+            <h2 class="card-title">Data Tempat Kuliner</h2>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -57,13 +62,7 @@
         </div>
     </div>
 
-    @push('styles')
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.css"/>
-    @endpush
-
     @push('scripts')
-        <script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.js"></script>
-
         <script type="text/javascript">
             $(function () {
                 $('#table-place').DataTable({
@@ -97,6 +96,7 @@
                 $('#confirm-delete').click(function (e) {
                     e.preventDefault();
                     const id = $(this).data('id');
+
                     $.ajax({
                         type: 'DELETE',
                         url: '/places/' + id,

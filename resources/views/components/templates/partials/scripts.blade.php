@@ -7,4 +7,6 @@
 <script src="{{ asset('dist/js/tabler.min.js') }}"></script>
 <script src="{{ asset('dist/js/demo.min.js') }}"></script>
 
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.js"></script>
+
 @stack('scripts')
