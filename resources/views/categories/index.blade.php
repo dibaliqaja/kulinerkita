@@ -66,7 +66,12 @@
                     serverSide: true,
                     ajax: "{{ route('categories.index') }}",
                     columns: [
-                        { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false },
+                        {
+                            data: 'DT_RowIndex',
+                            name: 'DT_RowIndex',
+                            orderable: false,
+                            searchable: false
+                        },
                         { data: 'name', name: 'name' },
                         { data: 'slug', name: 'slug' },
                         { data: 'action', name: 'action' },

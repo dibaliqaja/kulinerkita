@@ -71,7 +71,12 @@
                     serverSide: true,
                     ajax: "{{ route('places.index') }}",
                     columns: [
-                        { data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false },
+                        {
+                            data: 'DT_RowIndex',
+                            name: 'DT_RowIndex',
+                            orderable: false,
+                            searchable: false
+                        },
                         { data: 'place-menu', name: 'place-menu' },
                         { data: 'subDistrictName', name: 'subDistrictName' },
                         { data: 'description', name: 'description' },

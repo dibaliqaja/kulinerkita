@@ -70,7 +70,12 @@
                     serverSide: true,
                     ajax: "{{ route('menu.index', request()->segment(2)) }}",
                     columns: [
-                        { data: 'id', name: 'id' },
+                        {
+                            data: 'DT_RowIndex',
+                            name: 'DT_RowIndex',
+                            orderable: false,
+                            searchable: false
+                        },
                         { data: 'name', name: 'name' },
                         { data: 'image', name: 'image' },
                         { data: 'description', name: 'description' },
