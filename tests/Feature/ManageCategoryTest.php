@@ -10,12 +10,22 @@ class ManageCategoryTest extends TestCase
 {
     use RefreshDatabase;
 
-    public function test_user_can_see_category_create_button()
+    public function test_user_can_access_categories_page()
     {
         $this->signIn();
         $response = $this->get(route('categories.index'));
         $response->assertStatus(200);
         $response->assertSee('Tambah Kategori');
+        $response->assertSee('Data Kategori');
+    }
+
+    public function test_user_can_view_data_categories()
+    {
+        $category = Category::factory()->create();
+        $this->assertDatabaseHas('categories', ['name' => $category->name]);
+        $this->signIn();
+        $response = $this->getJson(route('categories.index'), ['HTTP_X-Requested-With' => 'XMLHttpRequest']);
+        $response->assertSeeText($category->name);
     }
 
     public function test_user_can_access_categories_create_page()
