@@ -21,9 +21,9 @@ class PlaceFactory extends Factory
             'name'            => $this->faker->name,
             'description'     => $this->faker->text(50),
             'sub_district_id' => 2,
-            'address'         => 'Address', //$this->faker->address,
+            'address'         => $this->faker->address,
             'phone'           => $this->faker->phoneNumber(),
-            'image'           => $this->faker->image('public/images', 640, 480, null, false),
+            'image'           => $this->faker->image('/tmp', 640, 480, null, false),
             'latitude'        => $this->faker->latitude,
             'longitude'       => $this->faker->longitude
         ];
