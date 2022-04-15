@@ -57,7 +57,7 @@ class PlaceController extends Controller
             'description'     => 'required',
             'sub_district_id' => 'required',
             'address'         => 'required',
-            'phone'           => 'required|numeric',
+            'phone'           => 'required',
             'image'           => 'required|image',
             'latitude'        => 'required',
             'longitude'       => 'required'
