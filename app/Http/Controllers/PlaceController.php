@@ -119,7 +119,7 @@ class PlaceController extends Controller
     public function update(Request $request, Place $place)
     {
         $this->validate($request, [
-            'name'            => 'required|unique:categories,name,except,id',
+            'name'            => 'required|unique:places,name,except,id',
             'description'     => 'required',
             'sub_district_id' => 'required',
             'address'         => 'required',

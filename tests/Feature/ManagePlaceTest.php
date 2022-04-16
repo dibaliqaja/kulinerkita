@@ -78,6 +78,35 @@ class ManagePlaceTest extends TestCase
         $response->assertStatus(200);
     }
 
+    // public function test_user_can_update_a_place()
+    // {
+    //     $this->seed(SubDistrictSeeder::class);
+    //     $place = Place::factory()->create();
+    //     $this->signIn();
+    //     $this->put(route('places.update', $place->id),[
+    //         'name'            => 'name',
+    //         'description'     => 'description',
+    //         'sub_district_id' => 1,
+    //         'address'         => 'address',
+    //         'phone'           => 'phone',
+    //         'image'           => UploadedFile::fake()->image('image'),
+    //         'latitude'        => 123131231,
+    //         'longitude'       => 1223131231
+    //     ]);
+    //     $place = Place::latest()->first();
+    //     $this->assertEquals('name', $place->name);
+    // }
+
+    public function test_user_can_delete_a_place()
+    {
+        $this->seed(SubDistrictSeeder::class);
+        $place = Place::factory()->create();
+        $this->signIn();
+        $this->assertEquals(1, Place::count());
+        $response = $this->delete('places/' . $place->id);
+        $response->assertStatus(200);
+    }
+
     public function test_validate_place_name_is_required()
     {
         $this->signIn();
