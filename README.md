@@ -29,6 +29,13 @@
 - API
   - Register
   - Login
+  - List, Show SubDistrict
+  - List, Show Place
+  - List Place Related
+  - List, Show Place Menu
+  - List Favorite Place by User
+  - Add Favorite Place by User
+  - Delete Favorite Place by User
 
 ### ⚙️ Requirements
 - PHP >= 8.0
@@ -95,7 +102,7 @@ php artisan serve
 > Pass : password
 
 ## Screenshoots
-Cooming Soon
+Soon
 
 ## License
 
