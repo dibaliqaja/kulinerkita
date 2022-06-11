@@ -5,8 +5,12 @@
 <p align="center">KulinerKita is a project for Culinary Place Management App</p>
 
 <p align="center">
+    <a href="https://github.com/dibaliqaja/kulinerkita/actions/workflows/kulinerkita.yml" target="_blank">
+        <img src="https://img.shields.io/badge/actions-passing-success?style=for-the-badge&logo=github-actions" alt="github actions" />
+    </a>
+    &nbsp;
     <a href="https://github.com/dibaliqaja/kulinerkita/releases" target="_blank">
-        <img src="https://img.shields.io/badge/version-v0.0.1-red?style=for-the-badge&logo=none" alt="system version" />
+        <img src="https://img.shields.io/badge/version-v1.0.0-red?style=for-the-badge&logo=none" alt="system version" />
     </a>
     &nbsp;
     <a href="https://github.com/dibaliqaja/kulinerkita" target="_blank">
@@ -15,8 +19,6 @@
     &nbsp;
     <img src="https://img.shields.io/badge/license-mit-red?style=for-the-badge&logo=none" alt="license" />
 </p>
-
-[![KulinerKita](https://github.com/dibaliqaja/kulinerkita/actions/workflows/kulinerkita.yml/badge.svg)](https://github.com/dibaliqaja/kulinerkita/actions/workflows/kulinerkita.yml)
 
 ### Features
 - Admin Panel
@@ -97,12 +99,11 @@ php artisan db:seed
 php artisan serve
 ```
 
-### Admin Credential in Seeder
-> Email : admin@email.com <br>
-> Pass : password
-
-## Screenshoots
-Soon
+### User Credentials in Seeder
+| #        | Administrator    |
+| -------- | ---------------- |
+| Email    | admin@email.com  |
+| Password | password         |
 
 ## License
 
